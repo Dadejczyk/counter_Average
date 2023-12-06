@@ -4,41 +4,17 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-
-        double totalValuations = 0;
-
-        int numberValuations = 0;
-
-
         System.out.println("provide ratings");
         String providedEvaluations = scanner.nextLine();
         String[] ratingsTable = providedEvaluations.split(" ");
 
-        for(String evaluation1 : ratingsTable)
-        {
-            try
-            {
-                double evaluation = Double.parseDouble(evaluation1);
-                if (evaluation >= 1 && evaluation <= 6)
-                {
-                    totalValuations += evaluation;
-                    numberValuations++;
-                }
-                else
-                {
+        double average = RatingCalculator.calculatorAverage(ratingsTable);
 
-                    System.out.println("erroneous data:");
-                }
-            }
-            catch (NumberFormatException e)
-            {
-                System.out.println();
-            }
-        }
-        if (numberValuations > 0)
+        if (average > 1 && average <= 6)
         {
-            double average = totalValuations / numberValuations;
             System.out.println("Medium: " + average);
+        } else {
+            System.out.println("No valid ratings provided");
         }
     }
 }
